@@ -1,0 +1,1 @@
+import type { Wishlist } from "@ecommerce/shared";const KEY="marketplace-guest-wishlist";export const getGuestWishlist=():Wishlist|null=>typeof window==="undefined"?null:JSON.parse(localStorage.getItem(KEY)??"null");export const saveGuestWishlist=(v:Wishlist)=>localStorage.setItem(KEY,JSON.stringify(v));export const clearGuestWishlist=()=>localStorage.removeItem(KEY);

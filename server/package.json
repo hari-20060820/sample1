@@ -1,0 +1,7 @@
+{
+ "name":"@ecommerce/server","private":true,"type":"module",
+ "scripts":{"dev":"node ../node_modules/tsx/dist/cli.mjs watch src/index.ts","build":"node ../node_modules/typescript/bin/tsc -p tsconfig.json","test":"node ../node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --minWorkers=1","seed":"node ../node_modules/tsx/dist/cli.mjs src/seed.ts"},
+ "dependencies":{"@ecommerce/shared":"*","cookie-parser":"^1.4.7","cors":"^2.8.5","dotenv":"^16.5.0","express":"^4.21.2","jsonwebtoken":"^9.0.2","mongoose":"^8.12.1","uuid":"^11.1.0","zod":"^3.24.2"},
+ "devDependencies":{"@types/cookie-parser":"^1.4.9","@types/express":"^5.0.1","@types/jsonwebtoken":"^9.0.10","@types/supertest":"^6.0.2","@types/uuid":"^10.0.0","mongodb-memory-server":"^10.1.4","supertest":"^7.1.0","tsx":"^4.19.3","typescript":"^5.7.3","vitest":"^3.0.8"}
+}
+

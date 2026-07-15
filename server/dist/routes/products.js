@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { ProductModel } from "../models/Product.js";
+export const productsRouter = Router();
+productsRouter.get("/", async (req, res) => { const { q, category, minPrice, maxPrice, minRating, inStock, sort = "newest", page = "1", limit = "12" } = req.query; const filter = {}; if (q)
+    filter.$text = { $search: q }; if (category)
+    filter.category = category; if (minPrice || maxPrice)
+    filter.priceCents = { $gte: Number(minPrice || 0), $lte: Number(maxPrice || Number.MAX_SAFE_INTEGER) }; if (minRating)
+    filter.rating = { $gte: Number(minRating) }; if (inStock === "true")
+    filter.inStock = true; const order = { newest: { createdAt: -1 }, priceAsc: { priceCents: 1 }, priceDesc: { priceCents: -1 }, rating: { rating: -1 } }[sort] ?? { createdAt: -1 }; const size = Math.min(Number(limit), 50), current = Math.max(Number(page), 1); const [items, total] = await Promise.all([ProductModel.find(filter).sort(order).skip((current - 1) * size).limit(size).lean(), ProductModel.countDocuments(filter)]); res.json({ items: items.map(p => ({ ...p, id: String(p._id), createdAt: p.createdAt.toISOString() })), total, page: current, pages: Math.ceil(total / size) }); });
+productsRouter.get("/:slug", async (req, res) => { const p = await ProductModel.findOne({ slug: req.params.slug }).lean(); if (!p)
+    return res.status(404).json({ error: "Product not found" }); res.json({ ...p, id: String(p._id), createdAt: p.createdAt.toISOString() }); });

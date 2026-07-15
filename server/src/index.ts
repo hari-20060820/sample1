@@ -1,0 +1,3 @@
+import "dotenv/config"; import express from "express"; import cors from "cors"; import cookieParser from "cookie-parser"; import { connectDb } from "./db.js"; import { productsRouter } from "./routes/products.js"; import { wishlistsRouter } from "./routes/wishlists.js";
+export const app=express(); app.use(cors({origin:process.env.CLIENT_ORIGIN ?? "http://localhost:3000",credentials:true}));app.use(cookieParser());app.use(express.json());app.use("/api/products",productsRouter);app.use("/api/wishlists",wishlistsRouter);app.use((err:any,_req:any,res:any,_next:any)=>res.status(500).json({error:err.message??"Unexpected error"}));
+if(process.env.NODE_ENV!=="test") connectDb().then(()=>app.listen(process.env.PORT??4000,()=>console.log("API listening"))).catch(console.error);

@@ -1,0 +1,6 @@
+import { z } from "zod";
+export const productSchema = z.object({ id:z.string(), name:z.string(), slug:z.string(), description:z.string(), priceCents:z.number().int().nonnegative(), currency:z.string(), images:z.array(z.string()), category:z.string(), tags:z.array(z.string()), rating:z.number().min(0).max(5), reviewCount:z.number().int().nonnegative(), inStock:z.boolean(), stockQty:z.number().int().nonnegative().optional(), createdAt:z.string() });
+export const wishlistItemSchema = z.object({ productId:z.string(), addedAt:z.string(), note:z.string().max(500).optional(), quantity:z.number().int().positive(), source:z.array(z.string()) });
+export const wishlistSchema = z.object({ id:z.string(), ownerId:z.string().nullable(), name:z.string().min(1).max(100), items:z.array(wishlistItemSchema), createdAt:z.string(), updatedAt:z.string(), version:z.number().int().nonnegative() });
+export const addWishlistItemSchema = z.object({ productId:z.string().min(1), note:z.string().max(500).optional(), quantity:z.number().int().positive().default(1), version:z.number().int().nonnegative() });
+export const mergeRequestSchema = z.object({ sourceListIds:z.tuple([z.string(),z.string()]), strategy:z.object({ quantity:z.enum(["max","sum"]).optional(), noteConcatSeparator:z.string().max(30).optional() }).optional(), version:z.number().int().nonnegative().optional() });

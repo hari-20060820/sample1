@@ -1,0 +1,1 @@
+import Link from "next/link";export default function NotFound(){return <main className="p-16 text-center"><h1 className="serif text-4xl">That piece has moved on.</h1><Link className="mt-5 inline-block underline" href="/">Return to the collection</Link></main>}

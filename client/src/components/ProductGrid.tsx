@@ -1,0 +1,1 @@
+import type {Product} from "@ecommerce/shared";import {ProductCard} from "./ProductCard";export function ProductGrid({products}:{products:Product[]}){return <div className="grid grid-cols-2 gap-x-5 gap-y-7 md:grid-cols-3">{products.map((p,i)=><ProductCard product={p} featured={i===0} key={p.id}/>)}</div>}

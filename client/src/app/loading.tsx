@@ -1,0 +1,1 @@
+import {SkeletonCard} from "@/components/SkeletonCard";export default function Loading(){return <main className="mx-auto max-w-6xl p-5"><div className="grid grid-cols-2 gap-5 md:grid-cols-3">{Array.from({length:6},(_,i)=><SkeletonCard key={i}/>)}</div></main>}

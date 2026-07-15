@@ -1,0 +1,2 @@
+﻿@tailwind base;@tailwind components;@tailwind utilities;
+*{box-sizing:border-box}body{margin:0;background:#090909;color:#f6f4f0;font-family:Arial,sans-serif}button,a,input,select{outline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #ff2b19}.serif{font-family:Georgia,serif}.torn{clip-path:polygon(0 1%,4% 0,9% 2%,15% 0,23% 1%,31% 0,42% 2%,54% 0,65% 2%,76% 0,87% 2%,100% 0,99% 100%,0 99%)}
